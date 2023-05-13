@@ -11,6 +11,6 @@
 
 <script setup>
 defineProps({
-    productos: []
+    productos: Array
 })
 </script>

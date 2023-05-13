@@ -5,7 +5,7 @@
         color="repeating-linear-gradient(to right,#dc2626 0%,#1e293b 100%)"
       />
       <GlobalesNavbar/>
-      <Transition>
+      <Transition name="page">
         <NuxtPage />
       </Transition>
       <Footer/>

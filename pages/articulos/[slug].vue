@@ -2,112 +2,136 @@
   <div class="max-w-3xl px-6 py-24 mx-auto space-y-8">
     <NuxtLink
       class="flex items-center font-bold text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200"
-      to="/"
-    >
+      to="/">
       <span class="mr-2 text-xl">←</span>
       Atrás
     </NuxtLink>
-    
+
+    <!-- Categoria -->
     <div>
-        <p class="font-display text-2xl dark:text-gray-100">
-          <span>
-            {{ page.Categoria.Categoria }}
-          </span>
-        </p>
-      </div>
-      <div class="mr-5 font-primary text-xl text-gray-600 dark:text-gray-200 flex justify-end">
-        <p>{{(page.Marcas.length < 2 ? 'Brand: ':'Brands: ')}}</p>
-        <p v-for="(marca, index) in page.Marcas">
-          <span v-if="index == page.Marcas.length - 1"> ,</span>
-          &nbsp{{ marca.Marcas_id.Nombre }}
-        </p>
-        
-      </div>
-    <div class="relative pt-48 pb-10 overflow-hidden shadow-xl rounded-2xl">
-     
-      <img
-        class="absolute inset-0 object-cover w-full h-full"
-        :src="fileUrl(page.Imagen_Principal)"
-      />
+      <p class="font-display text-3xl text-gray-800 dark:text-gray-100">
+        <span>
+          {{ producto.Categoria.Categoria }}
+        </span>
+      </p>
     </div>
-    
-    
+
+    <!-- Marcas -->
+    <div class="mr-5 font-primary text-xl text-gray-600 dark:text-gray-200 flex justify-end">
+      <p>{{ (producto.Marcas.length < 2 ? 'Brand: ' : 'Brands: ') }}</p>
+          <p v-for="(marca, index) in producto.Marcas">
+            <span v-if="index == producto.Marcas.length - 1 && producto.Marcas.length >= 2"> ,</span>
+            &nbsp{{ marca.Marcas_id.Nombre }}
+          </p>
+    </div>
+
+    <!-- Imagen -->
+    <div class="relative pt-48 pb-10 overflow-hidden shadow-xl rounded-2xl">
+      <img class="absolute inset-0 object-cover w-full h-full" :src="fileUrl(producto.Imagen_Principal)" />
+    </div>
+
+
     <div class="flex items-center">
       <div class="relative px-2 w-2/3">
         <div class="relative text-lg font-medium text-gray-900 md:flex-grow font-primary">
-        <p class="text-green-500 animate-pulse">Disponible</p>
-        <h1 class="text-4xl font-bold drop-shadow-sm dark:text-gray-400">{{ page.Nombre }}</h1>
-       
+          <p class="text-green-500 animate-pulse">Disponible</p>
+          <h1 class="text-4xl font-bold drop-shadow-sm dark:text-gray-400">{{ producto.Nombre }}</h1>
+
         </div>
       </div>
-      <div class="w-1/3 text-center text-3xl font-semibold font-sans text-gray-700 dark:text-gray-500">
-        {{ formatCurrency(page.Propiedades[0].Precio) }}
+      <div class="w-1/3 text-center text-3xl font-extrabold font-sans text-gray-700 dark:text-gray-500">
+        {{ formatCurrency(producto.Propiedades[indice].Precio, {hideZeros:true}) }}
       </div>
     </div>
     <div class="flex">
-          <VButton variant="secondary" class="w-full bg-gray-200 justify-center dark:bg-gray-800 dark:text-gray-300">
-            <PlusCircleIcon class="h-5 w-5 mr-1"/>
-            Añadir al carrito
-          </VButton>
-        </div>
+      <VButton v-if="producto.Propiedades[indice].Stock >= 1" variant="secondary" :class="added ? 'bg-green-400 ring-0':'bg-gray-200'" class=" outline-none ring-0 w-full justify-center dark:bg-gray-800 dark:text-gray-300"
+        @click="addToCart(producto)">
+        
+          <PlusCircleIcon v-if="!added" class="h-5 w-5 mr-1" />
+          <span v-if="!added" class="font-primary text-lg">Añadir al carrito</span>
+        
+          <CheckCircleIcon v-else class="h-5 w-5 mr-1" />
+          <span v-else>Añadido correctamente</span>
+        
+      </VButton>
+      <VButton v-else variant="secondary" class="w-full bg-gray-200 justify-center dark:bg-gray-800 dark:text-gray-300" disabled>
+        Sin Stock
+      </VButton>
+
+    </div>
     <div>
       <h4 class=" mx-2 font-titulo font-bold mb-3 dark:text-gray-500">Tallas disponibles</h4>
-      <div  class="flex flex-row mx-2 gap-x-3">
-        <div class="border px-4 py-3 dark:border-gray-700" v-for="propiedad in page.Propiedades">
-        <p class="font-sans font-bold text-2xl dark:text-gray-400"><span>
-          {{ propiedad.Talla }}
-        </span></p>
+      <div class="flex flex-row mx-2 gap-x-3">
+        <div :class="indice == index ? 'border-2 border-gray-500 dark:border-gray-300':' '" class="border px-4 py-3 dark:border-gray-700" @click="actualizarIndex(index)" v-for="(propiedad,index) in producto.Propiedades" :key="propiedad.id">
+          <p class="font-sans font-bold text-2xl dark:text-gray-400"><span>
+              {{ propiedad.Talla }}
+            </span></p>
+        </div>
       </div>
-      </div>
-      
+
 
     </div>
     <div>
       <hr>
       <h4 class="mt-6 mb-2 font-primary text-gray-800 text-xl dark:text-gray-400">Descripcion del producto</h4>
-      <div id="desc" v-html="page.Descripcion"></div>
+      <div id="desc" v-html="producto.Descripcion"></div>
     </div>
     <!-- <div class="prose dark:prose-invert" v-html="page.content" /> -->
   </div>
 </template>
 
 <script setup>
+
 import { formatCurrency } from '~/utils/currency';
-import { PlusCircleIcon } from '@heroicons/vue/24/outline';
+import { PlusCircleIcon, CheckCircleIcon } from '@heroicons/vue/24/outline';
+import { useCart } from '~/store/cart'
+const carrito = useCart()
 const { $directus } = useNuxtApp()
 const { fileUrl } = useFiles()
 const { params, path } = useRoute()
-const {
-  data: page,
-  pending,
-  error,
-} = await useAsyncData(
-  path,
-  () => {
-    return $directus
-      .items('Productos')
-      .readByQuery({ 
-        filter: {
-           slug: { _eq: params.slug }
-        },
-        fields: ['*','Marcas.Marcas_id.*','Categoria.*'],
-        limit: 1 
-      })},
+const { data: producto, pending, error } = await useAsyncData(path, () => {
+  return $directus.items('Productos').readByQuery({
+    filter: {
+      slug: { _eq: params.slug }
+    },
+    fields: ['*', 'Marcas.Marcas_id.*', 'Categoria.*'],
+    limit: 1
+  })
+},
   {
     transform: (data) => data.data[0]
   }
-)
+);
+const added = ref(false);
 useHead({
-  title: page.value.Nombre,
+  title: producto.value.Nombre,
 })
+function addToCart(producto){
+  added.value = true;
+  //Creamos una copia añadiendo los campos clave. (TALLA Y PRECIO)
+    let protoitem = {...producto};
+    console.log(protoitem)
+    protoitem.Propiedades = producto.Propiedades[indice.value],
+    carrito.addItem(protoitem),
+    protoitem = {};
+    
+  setTimeout(()=>{
+    added.value = false;
+  },1500)
+}
+const indice = ref(0)
+const actualizarIndex = (i) =>{
+  indice.value = i;
+}
+// Logica de Tallas
 </script>
 <style>
 #desc p {
   font-family: 'Squada One';
   color: #334155
 }
+
 html.dark #desc * {
   color: #cbd5e1
-
 }
 </style>

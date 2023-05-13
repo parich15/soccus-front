@@ -14,15 +14,15 @@
                         <h4 class="font-primary text-center mb-3 text-xl dark:text-gray-100">Inicia sesión en tu cuenta</h4>
                         <VAlert v-if="error" type="error" class="mb-4"> Error: {{ error }} </VAlert>
                         <div v-if="loading" class="flex items-center justify-center flex-1">
-                            <VLoading class="w-24 h-24 text-primary-600" />
+                            <VLoading class="w-12 h-12 text-primary-600" />
                         </div>
                         <div v-if="!loading">
                             <label for="email" class="font-primary text-sm text-gray-500">Email</label>
-                            <VInput class="my-2" v-model="email" name="email" type="email" label="Email address"
+                            <VInput class="my-2 font-mono" v-model="email" name="email" type="email" label="Email address"
                                 placeholder="user@example.com" required />
 
                             <label for="email" class="font-primary text-sm text-gray-500 mb-0">Password</label>
-                            <VInput class="my-2" v-model="password" name="password" type="password" label="Password" required />
+                            <VInput class="my-2 font-mono" v-model="password" name="password" type="password" label="Password" required />
                             
                             <div class="flex items-center justify-center space-x-4">
                                 <VButton type="submit" variant="secondary" class="bg-red-500" :disabled="!email || !password">

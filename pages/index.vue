@@ -4,6 +4,9 @@
       <div>
         <AnimacionesTextoBarcode class="p-3 font-display text-4xl text-gray-700" :texto='"HOT SHOTS"'></AnimacionesTextoBarcode>
       </div>
+      <div v-if="loading">
+        <VLoading class="w-6 h-6"></VLoading>
+      </div>
       <ProductosGridProductos :productos="productos"></ProductosGridProductos>
     </main>
 </template>
