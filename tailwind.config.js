@@ -23,7 +23,7 @@ module.exports = {
         primary: ['Squada One'],
         serif: ['Castoro Titling', ...defaultTheme.fontFamily.serif ],
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-        display: ['Libre Barcode 39 Text']
+        display: ['"Libre Barcode 39 Text"']
       },
     },
   },

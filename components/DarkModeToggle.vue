@@ -1,5 +1,5 @@
 <template>
-  <button @click="(e) => toggleDark()" class="p-1">
+  <button @click="(e) => toggleDark()">
     <transition
       enter-active-class="transition duration-100 ease-out"
       enter-from-class="opacity-0"
@@ -9,8 +9,8 @@
       leave-to-class="opacity-0 "
       mode="out-in"
     >
-      <MoonIcon v-if="isDark" class="w-8 h-8" />
-      <SunIcon v-else-if="!isDark" class="w-8 h-8" />
+      <MoonIcon v-if="isDark" class="w-5 h-5 text-gray-500" />
+      <SunIcon v-else-if="!isDark" class="w-5 h-5" />
     </transition>
   </button>
 </template>

@@ -1,3 +1,5 @@
+import { content } from "./tailwind.config";
+
 export default defineNuxtConfig({
   
   app:{
@@ -24,6 +26,7 @@ export default defineNuxtConfig({
         { rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#5bbad5' },
       ],
       meta: [
+        { name: "theme-color",content: '#f1f5f9'},
         { hid: 'description', name: 'Soccus Retro', content: 'Exclusive shop' },
         { name: 'msapplication-TileColor', content: '#ffffff' },
         { name: 'msapplication-TileImage', content: '/favicons/ms-icon-144x144.png' },

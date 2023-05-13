@@ -1,7 +1,7 @@
 const formatCurrency = (number, options) => {
-  const formatter = new Intl.NumberFormat('en-US', {
+  const formatter = new Intl.NumberFormat('es-ES', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'EUR',
     // These options are needed to round to whole numbers if that's what you want.
     ...(options &&
       options.hideZeros && {
@@ -12,12 +12,12 @@ const formatCurrency = (number, options) => {
   return formatter.format(number)
 }
 
-function centsToDollars(cents) {
+function centsToEuros(cents) {
   return Number((cents / 100).toFixed(2))
 }
 
-function dollarsToCents(dollars) {
+function eurosToCents(euros) {
   return Math.round(dollars * 100)
 }
 
-export { formatCurrency, centsToDollars, dollarsToCents }
+export { formatCurrency, centsToEuros, eurosToCents }
