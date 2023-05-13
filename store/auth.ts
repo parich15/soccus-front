@@ -22,22 +22,22 @@ export const useAuth = defineStore('auth', {
       const { $directus } = useNuxtApp()
 
       try {
-        // Try to login
+        // Logueamos
         const response = await $directus.auth.login({
           email,
           password,
         })
 
-        // If login was successful, fetch the users data
+        // Si 200, fectheamos data
         const user = await $directus.users.me.read({
           fields: ['*'],
         })
 
-        // Update the auth store with the user data
+        // Actualizamos info de la store
         this.loggedIn = true
         this.user = user
 
-        // If there's a redirect, send the user there
+        // Anti Redirecciones
         if (redirect) {
           router.push(redirect)
         }
