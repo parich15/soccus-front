@@ -1,8 +1,8 @@
 <template>
     <main class="w-full max-w-md">
-      <InicioHero :Texto="'WELCOME TO SOCCUS RETRO'"></InicioHero>
+      <InicioHero :Texto="'VIP ARCHIVE'"></InicioHero>
       <div>
-        <AnimacionesTextoBarcode class="p-3 font-display text-4xl text-gray-700" :texto='"HOT SHOTS"'></AnimacionesTextoBarcode>
+        <AnimacionesTextoBarcode class="p-3 font-display text-4xl text-gray-700" :texto='"OLD TREASURES"'></AnimacionesTextoBarcode>
       </div>
       <ProductosGridProductos :productos="productos"></ProductosGridProductos>
     </main>
@@ -10,7 +10,7 @@
 
 <script setup>
 useHead({
-  title: "Inicio",
+  title: "Archivo",
 })
 const {$directus} = useNuxtApp();
 const loading = ref(false);
@@ -21,7 +21,7 @@ const getProductos = async () =>{
   try {
     const {data} =  await $directus.items('Productos').readByQuery({
         filter: {
-            status: {_eq: 1},
+            Archivo: {_eq:true}
         },
         fields: ['*']
     })

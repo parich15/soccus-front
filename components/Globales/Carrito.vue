@@ -1,6 +1,9 @@
 <template>
   <Popover class="relative">
     <PopoverButton class="p-2">
+        <div class="relative">
+          <div class="absolute z-50 bg-red-500 h-1 w-1 rounded-full"></div>
+        </div>
         <ShoppingBagIcon class="h-6 w-6 dark:text-slate-100"></ShoppingBagIcon>
     </PopoverButton>
     <transition

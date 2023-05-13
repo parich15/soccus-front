@@ -11,7 +11,9 @@
         <div class="grid grid-cols-1">
           <h3 class="font-primary text-xl tracking-wide text-gray-600">Enlaces</h3>
           <div v-for="enlace in enlaces" :key="enlace.key" class="my-2 pb-1">
-            <h4 class="font-primary text-4xl dark:text-gray-400">{{ enlace.texto }}</h4>
+            <NuxtLink :to="enlace.url" class="font-primary text-4xl dark:text-gray-400">
+              {{ enlace.texto }}
+            </NuxtLink>
           </div>
           <hr class=" dark:opacity-50">
           <h3 class="font-display text-xl text-slate-500 text-left mt-2">Soccus Retro Web</h3>
@@ -42,11 +44,6 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { Bars3BottomLeftIcon } from '@heroicons/vue/24/outline';
 const enlaces = [
-  {
-    url: '/',
-    texto: 'Inicio',
-    key: 1,
-  },
   {
     url: '/Archivo',
     texto: 'Archivo',

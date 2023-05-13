@@ -4,8 +4,10 @@
         <!-- Logo -->
         <div class="flex align-center ml-2">
             <div>
+              <NuxtLink to="/">
                 <img v-if="!isDark" src="/logos/logo-black.png" class="h-10 w-auto" alt="">
                 <img v-else src="/logos/logo-white.png" class="h-10 w-auto" alt="">
+              </NuxtLink>
 
             </div>
         </div>
@@ -20,7 +22,9 @@
         <!-- Ordenador -->
         <div class="justify-end ml-auto w-9/12 items-center hidden sm:flex">
             <div v-for="enlace in enlaces" :key="enlace.key">
-                <nav class="mx-3 font-primary text-2xl dark:text-gray-300">{{ enlace.texto }}</nav>
+                <nav class="mx-3 font-primary text-2xl dark:text-gray-300">
+                  {{ enlace.texto }}
+                </nav>
             </div>
             <GlobalesAjustes></GlobalesAjustes>
         </div>
