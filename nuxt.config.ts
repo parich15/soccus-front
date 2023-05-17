@@ -1,7 +1,4 @@
-import { content } from "./tailwind.config";
-
 export default defineNuxtConfig({
-  
   app:{
     head:{
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
@@ -61,20 +58,18 @@ export default defineNuxtConfig({
   },
 
   //   Currently still needed
-  build: {
-    transpile: ['@heroicons/vue', '@headlessui/vue','animejs'],
-  },
+  // build: {
+  //   transpile: ['@heroicons/vue', '@headlessui/vue'],
+  // },
 
-  vite: {
-    optimizeDeps: {
-      include: [
-        '@heroicons/vue/20/solid',
-        '@heroicons/vue/24/solid',
-        '@heroicons/vue/24/outline',
-        '@headlessui/vue',
-        'vue',
-        'pinia',
-      ],
-    },
-  },
+  // vite: {
+  //   optimizeDeps: {
+  //     include: [
+  //       '@heroicons/vue/20/solid',
+  //       '@heroicons/vue/24/solid',
+  //       '@heroicons/vue/24/outline',
+  //       '@headlessui/vue'
+  //     ],
+  //   },
+  // },
 })

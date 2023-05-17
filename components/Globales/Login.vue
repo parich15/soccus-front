@@ -1,8 +1,8 @@
 <template>
     <Popover class="relative">
         <PopoverButton class="p-2">
-            <UserPlusIcon v-if="!auth.isLoggedIn" class="h-6 w-6 dark:text-slate-100" />
-            <UserCircleIcon v-else class="h-6 w-6 dark:text-slate-100" />
+            <UserCircleIcon  v-if="isLoggedIn" class="h-6 w-6 dark:text-slate-100" />
+            <UserPlusIcon v-else class="h-6 w-6 dark:text-slate-100" />
         </PopoverButton>
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-x-10 opacity-0"
             enter-to-class="translate-y-0 opacity-100" leave-active-class="transition duration-150 ease-in"
@@ -54,6 +54,7 @@
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { UserPlusIcon, UserCircleIcon, ArchiveBoxArrowDownIcon, PowerIcon } from '@heroicons/vue/24/outline';
+import { storeToRefs } from 'pinia';
 import { useAuth } from '~/store/auth';
 const auth = useAuth()
 const email = ref()
@@ -61,6 +62,14 @@ const password = ref()
 const error = ref(null)
 const loading = ref(false)
 
+const {isLoggedIn} = storeToRefs(auth)
+onBeforeMount(()=>{
+  console.log(isLoggedIn.value);
+})
+onMounted(()=>{
+  console.log(isLoggedIn.value);
+
+})
 async function login() {
   loading.value = true
   error.value = null

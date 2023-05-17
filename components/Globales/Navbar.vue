@@ -5,8 +5,7 @@
         <div class="flex align-center ml-2">
             <div>
               <NuxtLink to="/">
-                <img v-if="!isDark" src="/logos/logo-black.png" class="h-10 w-auto" alt="">
-                <img v-else src="/logos/logo-white.png" class="h-10 w-auto" alt="">
+                <img :src="isDark ?'/logos/logo-white.png' : '/logos/logo-black.png'" class="h-10 w-auto">
               </NuxtLink>
 
             </div>
@@ -55,4 +54,5 @@ const enlaces = [
     key: 4
   }
 ]
+
 </script>
