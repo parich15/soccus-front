@@ -27,7 +27,7 @@
                 <span class="font-primary text-lg text-gray-600 mr-1">
                   Tallas:
                 </span>
-                <span class="font-bold text-lg text-gray-600">EU</span>
+                <button @click="cambiarFormato" class="font-bold text-lg text-gray-600">{{ tallas.formato }}</button>
               </div>
               <div class="w-1/2 flex items-center">
                 <span class="font-primary text-lg text-gray-600">
@@ -47,6 +47,19 @@
 import TextoBarcode from '../Animaciones/TextoBarcode.vue';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { Bars3BottomLeftIcon } from '@heroicons/vue/24/outline';
+import { useTallasStore } from '~/store/tallas';
+const tallas = useTallasStore()
+const ruta = useRoute();
+watch(ruta, () => close.value = !close.value)
+
+function cambiarFormato (){
+    if(tallas.formato == 'EU'){
+      tallas.setFormato('US');
+    }else{
+      tallas.setFormato('EU')
+    }
+}
+
 const enlaces = [
   {
     url: '/',
@@ -69,6 +82,4 @@ const enlaces = [
     key: 4
   }
 ]
-const ruta = useRoute();
-watch(ruta, () => close.value = !close.value)
 </script>

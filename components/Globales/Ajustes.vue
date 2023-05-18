@@ -17,7 +17,7 @@
                   </span>
                 </div>
                 <div class="text-center">
-                    <span class="font-bold text-lg text-gray-600">EU</span>
+                    <button @click="cambiarFormato()" class="font-bold text-lg text-gray-600">{{ tallas.formato }}</button>
                 </div>
                 <div class="w-full flex justify-center items-center">
                   <span class="font-primary text-lg text-gray-600">
@@ -39,4 +39,14 @@
   <script setup>
   import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
   import { Cog8ToothIcon } from '@heroicons/vue/24/outline';
+  import { useTallasStore } from '~/store/tallas';
+  const tallas = useTallasStore()
+
+  function cambiarFormato (){
+    if(tallas.formato == 'EU'){
+      tallas.setFormato('US');
+    }else{
+      tallas.setFormato('EU')
+    }
+  }
   </script>

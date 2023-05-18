@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 interface FormatoTallas {
-    formato: 'EU'| 'UA'
+    formato: 'EU'| 'US' 
   }
-export const useTallasStore = defineStore('tallas'{
+export const useTallasStore = defineStore('tallas',{
   state: ():FormatoTallas => ({
     formato: 'EU' , // inicialmente se usa formato europeo
   }),

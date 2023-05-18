@@ -62,14 +62,14 @@ export default defineNuxtConfig({
   //   transpile: ['@heroicons/vue', '@headlessui/vue'],
   // },
 
-  // vite: {
-  //   optimizeDeps: {
-  //     include: [
-  //       '@heroicons/vue/20/solid',
-  //       '@heroicons/vue/24/solid',
-  //       '@heroicons/vue/24/outline',
-  //       '@headlessui/vue'
-  //     ],
-  //   },
-  // },
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@heroicons/vue/20/solid',
+        '@heroicons/vue/24/solid',
+        '@heroicons/vue/24/outline',
+        '@headlessui/vue'
+      ],
+    },
+  },
 })

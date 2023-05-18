@@ -33,7 +33,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     storage: new CookieStorage(),
     auth: {
       mode: 'json',
-    },
+    }
   })
 
   // Inject the SDK into the Nuxt app
@@ -41,14 +41,12 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // We're calling the useAuth composable here because we need to define Directus as a plugin first
   const auth = useAuth()
-
   const token = await directus.auth.token
   const side = process.server ? 'server' : 'client'
 
   // If there's a token but we don't have a user, fetch the user
   if (!auth.isLoggedIn && token) {
     console.log('Token found, fetching user from ' + side)
-    console.log('Token is', token)
     try {
       await auth.getUser()
       console.log('User fetched succeessfully from ' + side)
@@ -59,7 +57,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // If the user is logged in but there's no token, reset the auth store {
   if (auth.isLoggedIn && !token) {
-    console.log('Token not found, resetting auth store from ' + side)
+    console.log('Token not found, resetting...' + side)
     auth.$reset()
   }
 })

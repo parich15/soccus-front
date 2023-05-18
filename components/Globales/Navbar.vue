@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed top-0 z-50 bg-slate-100 min-w-full p-3 mb-1 flex align-center border-b dark:bg-gray-950 dark:border-slate-950">
+    <div class="fixed top-0 z-50 bg-slate-100/30 backdrop-blur-md min-w-full p-3 mb-1 flex align-center border-b dark:bg-gray-950/80 dark:border-slate-950">
 
         <!-- Logo -->
         <div class="flex align-center ml-2">

@@ -5,3 +5,6 @@
 .router-link-active {
     color: #cbd5e1;
 }
+html.dark .router-link-active{
+    color: #374151!important;
+}
