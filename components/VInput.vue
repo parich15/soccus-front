@@ -8,7 +8,7 @@
         :type="type"
         :name="name"
         :id="name"
-        :class="['input', { 'text-right': type === 'number' }]"
+        :class="['input']"
         :placeholder="placeholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />

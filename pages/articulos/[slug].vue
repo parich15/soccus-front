@@ -69,7 +69,7 @@
       </div>
       <!-- Tallas -->
       <div v-if="!producto.Archivo">
-        <h4 class=" mx-2 font-titulo font-bold mb-3 dark:text-gray-500">Tallas disponibles <span class="text-xs ml-1">({{ tallas.formato }})</span></h4>
+        <h4 class=" mx-2 font-titulo font-bold mb-3 dark:text-gray-500">Tallas disponibles <span class="text-xs ml-1" @click="cambiarFormato()">({{ tallas.formato }})</span></h4>
         <div class="flex flex-row mx-2 gap-x-3">
           <div :class="indice == index ? 'border-2 border-gray-500 dark:border-green-400' : ' '"
             class="border px-4 py-3 dark:border-gray-700" @click="indice = index"
@@ -143,6 +143,13 @@ function addToCart(producto) {
   }, 1500)
 }
 
+function cambiarFormato (){
+    if(tallas.formato == 'EU'){
+      tallas.setFormato('US');
+    }else{
+      tallas.setFormato('EU')
+    }
+}
 useHead({
   title: producto?.value?.Nombre,
 })
