@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 interface AuthState {
   loggedIn: boolean
-  user: object
+  user: any
 }
 
 export const useAuth = defineStore('auth', {

@@ -1,8 +1,8 @@
 <template>
-<footer aria-label="Site Footer" class="bg-white lg:grid lg:grid-cols-5 dark:bg-gray-900">
+<footer aria-label="Site Footer" class="bg-gray-50 lg:grid lg:grid-cols-5 dark:bg-gray-900 lg:mt-10">
   <div class="relative block h-32 lg:col-span-2 lg:h-full">
     <img
-      src="https://images.unsplash.com/photo-1642370324100-324b21fab3a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
+      src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80"
       alt=""
       class="absolute inset-0 object-cover w-full h-full"
     />
@@ -13,7 +13,7 @@
       <div>
         <p>
           <span class="text-lg tracking-wide text-gray-500 uppercase font-primary">
-            Ponte en contacto con nosotros!
+            FOLLOW US IN OUR NETWORKS!
           </span>
         </p>
         <ul class="flex gap-6 mt-8">
@@ -91,14 +91,14 @@
 
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <p class="font-medium font-primary text-xl text-gray-600">Enlaces</p>
+          <p class="font-medium font-primary text-xl text-gray-600">Sitemap</p>
 
           <nav aria-label="Footer Navigation - Services" class="mt-6">
             <ul class="space-y-2 text-sm">
               <li v-for="enlace in enlaces" :key="enlace.id">
-                <a href="#" class="text-gray-700 transition hover:opacity-75 font-primary text-2xl">
+                <NuxtLink :to="enlace.url" class="text-gray-700 transition hover:opacity-75 font-primary text-2xl">
                   {{enlace.texto}}
-                </a>
+                </NuxtLink>
               </li>
             </ul>
           </nav>
@@ -131,7 +131,7 @@
         </nav>
 
         <p class="mt-8 text-xs text-gray-500 sm:mt-0">
-          &copy; {{new Date().getFullYear()}} Soccus Retro. Todos los derechos reservados.
+          &copy; 2017 - {{new Date().getFullYear()}} Soccus Retro. Todos los derechos reservados.
         </p>
       </div>
     </div>
@@ -143,22 +143,22 @@
 const enlaces = [
   {
     url: '/',
-    texto: 'Inicio',
+    texto: 'HOME',
     key: 1,
   },
   {
-    url: '/Archivo',
-    texto: 'Archivo',
+    url: '/Archive',
+    texto: 'ARCHIVE',
     key: 2,
   },
   {
-    url: '/Sorteos',
-    texto: 'Sorteos',
+    url: '/Raffles',
+    texto: 'RAFFLES',
     key: 3,
   },
   {
-    url: '/Nosotros',
-    texto: 'Nosotros',
+    url: '/About',
+    texto: 'ABOUT',
     key: 4
   }
 ]

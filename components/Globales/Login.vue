@@ -1,6 +1,6 @@
 <template>
     <Popover class="relative">
-        <PopoverButton class="p-2">
+        <PopoverButton class="p-2 rounded-full hover:bg-gray-300/20">
             <UserCircleIcon  v-if="auth.isLoggedIn" class="h-6 w-6 dark:text-slate-100" />
             <UserPlusIcon v-else class="h-6 w-6 dark:text-slate-100" />
         </PopoverButton>
@@ -8,7 +8,7 @@
             enter-to-class="translate-y-0 opacity-100" leave-active-class="transition duration-150 ease-in"
             leave-from-class="translate-y-0 opacity-100" leave-to-class="-translate-x-10 opacity-0" mode="out-in">
             <PopoverPanel
-                class="absolute z-10 bg-slate-50 border rounded left-0 mt-4 w-screen max-w-[290px] -translate-x-[54%] transform p-4 sm:px-0 lg:max-w-3xl dark:bg-gray-900 dark:border-gray-800">
+                class="absolute z-10 bg-slate-50 border rounded left-0 mt-4 w-screen max-w-[290px] -translate-x-[54%] lg:-translate-x-[50%] transform p-4 md:p-5 sm:px-0 lg:max-w-sm dark:bg-gray-900 dark:border-gray-800">
                 <div class="grid grid-cols-1" v-if="!auth.isLoggedIn">
                     <div class="flex justify-between">
                         <button class="font-primary mb-3 text-xl dark:text-gray-100 opacity-50 transition-opacity disabled:opacity-100" :disabled="showLogin" @click="showLogin = true">Inicia sesión</button>
@@ -54,6 +54,9 @@
                             <label for="email" class="font-primary text-sm text-gray-500">Nombre</label>
                             <VInput class="my-2 font-mono bg-gray-200 dark:bg-gray-700" v-model="nombre" name="name" type="text" label="Nombre"
                                 placeholder="Tu nombre" required />
+                            <label for="surname" class="font-primary text-sm text-gray-500">Apellido</label>
+                            <VInput class="my-2 font-mono bg-gray-200 dark:bg-gray-700" v-model="apellido" name="surname" type="text" label="Nombre"
+                                placeholder="Tu apellido" required />
 
                             <label for="email" class="font-primary text-sm text-gray-500">Email</label>
                             <VInput class="my-2 font-mono bg-gray-200 dark:bg-gray-700" v-model="email" name="email" type="email" label="Email"
@@ -79,7 +82,7 @@
                     <div class="grid grid-cols-2 mt-4">
                         <NuxtLink :to="{path:'/usuario/'+auth.user.id, hash:'#pedidos'}">
                              <div class="font-primary text-lg flex items-center text-gray-600">
-                                <ArchiveBoxArrowDownIcon class="h-4 w-4 mr-1"/> Mis Pedidos
+                                <ArchiveBoxArrowDownIcon class="h-4 w-4 mr-1"/> Orders
                             </div>
                         </NuxtLink>
                        
@@ -106,6 +109,8 @@ const showLogin = ref(true)
 const error = ref(null)
 const loading = ref(false)
 const nombre = ref(null);
+const apellido = ref(null);
+
 
 async function login() {
   loading.value = true
@@ -131,6 +136,7 @@ async function register(){
     const config = useRuntimeConfig();
     const user = {
         first_name: nombre.value,
+        last_name: apellido.value,
         role: "dbd657b7-0fcc-42b5-93ba-2af20cba0d48",
         email: email.value,
         password:password.value

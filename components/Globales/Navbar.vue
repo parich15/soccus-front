@@ -10,49 +10,50 @@
 
             </div>
         </div>
+        
+        <div class="justify-end ml-auto w-9/12 items-center hidden sm:flex sm:mr-1">
+            <div v-for="enlace in enlaces" :key="enlace.key">
+                <nav class="mx-3 font-primary text-2xl dark:text-gray-300 lg:text-2xl lg:mx-1 ">
+                  <NuxtLink :to="enlace.url" class="px-3 py-2 rounded hover:bg-gray-200/20">
+                    {{ enlace.texto }}
+                  </NuxtLink>
+                </nav>
+            </div>
+        </div>
 
         <!-- Movil -->
-        <div class="flex ml-auto w-1/3 justify-between items-center sm:hidden">
+        <div class="flex ml-auto w-1/3 justify-between items-center md:w-1/5 lg:w-2/12 lg:m-0 lg:justify-around">
             <GlobalesLogin></GlobalesLogin>
             <GlobalesCarrito></GlobalesCarrito>
-            <GlobalesMenu></GlobalesMenu>
+            <GlobalesMenu :enlaces="enlaces"></GlobalesMenu>
         </div>
 
         <!-- Ordenador -->
-        <div class="justify-end ml-auto w-9/12 items-center hidden sm:flex">
-            <div v-for="enlace in enlaces" :key="enlace.key">
-                <nav class="mx-3 font-primary text-2xl dark:text-gray-300">
-                  {{ enlace.texto }}
-                </nav>
-            </div>
-            <GlobalesAjustes></GlobalesAjustes>
-        </div>
+        
     </div>
 </template>
 
 <script setup>
-import { isDark } from '~~/composables/useDark'
 const enlaces = [
   {
     url: '/',
-    texto: 'Inicio',
+    texto: 'HOME',
     key: 1,
   },
   {
-    url: '/Archivo',
-    texto: 'Archivo',
+    url: '/Archive',
+    texto: 'ARCHIVE',
     key: 2,
   },
   {
-    url: '/Sorteos',
-    texto: 'Sorteos',
+    url: '/Raffles',
+    texto: 'RAFFLES',
     key: 3,
   },
   {
-    url: '/Nosotros',
-    texto: 'Nosotros',
+    url: '/About',
+    texto: 'ABOUT',
     key: 4
   }
 ]
-
 </script>

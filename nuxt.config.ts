@@ -40,6 +40,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     // https://vueuse.org/
     '@vueuse/nuxt',
+    // https://nuxt.com/modules/vue3-carousel-nuxt
+    'vue3-carousel-nuxt'
   ],
 
   runtimeConfig: {
@@ -62,14 +64,14 @@ export default defineNuxtConfig({
   //   transpile: ['@heroicons/vue', '@headlessui/vue'],
   // },
 
-  vite: {
-    optimizeDeps: {
-      include: [
-        '@heroicons/vue/20/solid',
-        '@heroicons/vue/24/solid',
-        '@heroicons/vue/24/outline',
-        '@headlessui/vue'
-      ],
-    },
-  },
+  // vite: {
+  //   optimizeDeps: {
+  //     include: [
+  //       '@heroicons/vue/20/solid',
+  //       '@heroicons/vue/24/solid',
+  //       '@heroicons/vue/24/outline',
+  //       '@headlessui/vue'
+  //     ],
+  //   },
+  // },
 })

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useCart = defineStore('cart', {
   state: () => ({
-    items: [],
+    items: [] as any[],
   }),
   getters: {
     totalPrice (): Number {
@@ -13,8 +13,8 @@ export const useCart = defineStore('cart', {
     }
   },
   actions: {
-    addItem(item: Object) {
-      const existingItem = this.items.find(i => i.id === item.id && i.Propiedades.Talla === item.Propiedades.Talla);
+    addItem(item: any) {
+      const existingItem = this.items.find((i: any) => i.id === item.id && i.Propiedades.Talla === item.Propiedades.Talla);
       if (existingItem) {
         existingItem.quantity++;
       } else {
@@ -22,7 +22,7 @@ export const useCart = defineStore('cart', {
       }
     },
 
-    removeItem(index) {
+    removeItem(index: any) {
         this.items.splice(index, 1);
     },
     $reset(){

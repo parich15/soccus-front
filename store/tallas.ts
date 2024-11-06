@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
-interface FormatoTallas {
-    formato: 'EU'| 'US' 
+export interface FormatoTallas {
+    formato: 'EU'| 'US' | 'UK'
   }
 export const useTallasStore = defineStore('tallas',{
-  state: ():FormatoTallas => ({
+  state: (): FormatoTallas => ({
     formato: 'EU' , // inicialmente se usa formato europeo
   }),
   actions: {
-    setFormato(formato:FormatoTallas) {
-      this.formato = formato;
+    setFormato(formato: FormatoTallas['formato']) {	
+      this.formato = formato as any;
     },
   },
 });

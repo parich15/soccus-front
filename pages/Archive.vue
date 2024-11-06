@@ -1,10 +1,7 @@
 <template>
-    <main class="w-full max-w-md">
+    <main class="w-full max-w-md md:max-w-none md:w-full">
       <InicioHero :Texto="'VIP ARCHIVE'"></InicioHero>
-      <div>
-        <AnimacionesTextoBarcode class="p-3 font-display text-4xl text-gray-700" :texto='"OLD TREASURES"'></AnimacionesTextoBarcode>
-      </div>
-      <ProductosGridProductos :productos="productos"></ProductosGridProductos>
+      <ProductosGridProductos :productos="productos" :subtitulo="'OLD TREASURES'"></ProductosGridProductos>
     </main>
 </template>
 

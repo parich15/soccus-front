@@ -1,5 +1,5 @@
 <template>
-    <h3 class="animacion2" v-html="contenido"></h3>
+    <h3 class="animacion2 dark:text-gray-500" v-html="contenido"></h3>
 </template>
 
 <script setup>
